@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block content %}
+        <h2>Server</h2>
+
+        {% if serverStatus %}
+            <p>You are signed in via the server.</p>
+            <p>Hello, {{serverStatus}}!</p>
+            <a href="/sign-out">Sign out via the server.</a>
+        {% else %}
+            <p>You are NOT signed in via the server.</p>
+                <form method="POST" action="/sign-in">
+                    <label>Sign in using the server</label>
+                    <input name="sign-in" type="text" placeholder="username" />
+                    <br />
+                    <button type="submit">Server Sign In</button>
+                </form>
+        {% endif %}
+        <hr />
+        <h2>Client</h2>
+
+        <p class="client-no">You are NOT signed in via the client.</p>
+        <div class="client-no">
+            <label>Sign in using the client</label>
+            <input id="sign-in" type="text" placeholder="username" />
+        </div>
+        <button class="client-no" onclick="signIn()">Client Sign In</button>
+        <p class="client-yes">You are signed in via the client.</p>
+        <p class="client-yes">Hello, <span id="un"></span>!</p>
+        <button class="client-yes" onclick="signOut()">Sign out via the client.</button>
+{% endblock %}
